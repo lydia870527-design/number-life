@@ -1,5 +1,6 @@
 import streamlit as st
 import pandas as pd
+from datetime import datetime
 from engine import calculate
 
 st.title("智慧數字人生")
@@ -12,16 +13,44 @@ with col1:
     year = st.text_input("年", max_chars=4)
 
 with col2:
-    month = st.text_input("月", max_chars=2)
+    month = st.number_input(
+        "月",
+        min_value=1,
+        max_value=12,
+        step=1
+    )
 
 with col3:
-    day = st.text_input("日", max_chars=2)
+    day = st.number_input(
+        "日",
+        min_value=1,
+        max_value=31,
+        step=1
+    )
 
-if year and month and day:
+# 自動補零
+month = str(int(month)).zfill(2)
+day = str(int(day)).zfill(2)
 
-    birthday = f"{year}/{month}/{day}"
+birthday = f"{year}/{month}/{day}"
 
-    result = calculate(birthday)
+valid_date = True
+
+try:
+    datetime.strptime(birthday, "%Y/%m/%d")
+
+except:
+    valid_date = False
+
+if year:
+
+    if valid_date:
+
+        result = calculate(birthday)
+
+    else:
+
+        st.error("日期不存在")
 
     st.header(f"{name}－{result['幾號人']}號人")
 
