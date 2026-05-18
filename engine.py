@@ -256,3 +256,15 @@ def calculate(birthday):
 
         "自身五行": five_result
     }
+
+    from datetime import datetime
+
+def calculate_current_year(month, day):
+
+    current_year = datetime.now().year
+
+    birthday = f"{current_year}/{month}/{day}"
+
+    result = calculate(birthday)
+
+    return result["幾號人"]

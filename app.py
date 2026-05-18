@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 from datetime import datetime
-from engine import calculate
+from engine import calculate, calculate_current_year
 
 st.title("智慧數字人生")
 
@@ -134,3 +134,33 @@ if year:
     df = pd.DataFrame(table_data)
 
     st.dataframe(df, hide_index=True)
+    st.subheader("流年")
+
+current_year_number = calculate_current_year(month, day)
+
+year_fortune = {
+
+    1: "高運年｜新開始與突破之年",
+
+    2: "合作年｜適合經營感情與人際",
+
+    3: "低運年｜容易混亂與分心",
+
+    4: "富貴年｜事業與財富開始累積",
+
+    5: "高運年｜變化增加，容易有機會",
+
+    6: "富貴年｜責任與財運提升",
+
+    7: "高運年｜思考力與直覺增強",
+
+    8: "低運年｜壓力較大，需穩定情緒",
+
+    9: "富貴年｜豐收與結果之年"
+}
+
+fortune_text = year_fortune[current_year_number]
+
+st.success(
+    f"流年 {current_year_number} - {fortune_text}"
+)
