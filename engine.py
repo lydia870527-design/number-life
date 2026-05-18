@@ -259,6 +259,8 @@ def calculate(birthday):
         "自身五行": five_result
     }
 
+
+
     
 
 def calculate_current_year(month, day):
