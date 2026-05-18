@@ -1,3 +1,5 @@
+from datetime import datetime
+
 def reduce_number(n):
 
     if n == 0:
@@ -257,7 +259,7 @@ def calculate(birthday):
         "自身五行": five_result
     }
 
-    from datetime import datetime
+    
 
 def calculate_current_year(month, day):
 
